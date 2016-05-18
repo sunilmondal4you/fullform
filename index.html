@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title>Full form using Webstrom</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <!--jquery-->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- bootstrap-->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!--angular-->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+
+    <script src="index.js"></script>
+</head>
+<body ng-controller="myctrl">
+<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">facebook <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Form</a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link1</a></li>
+                <li><a href="#mymodal" data-toggle="modal">Modal</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 bg-info">some data.</div>
+        <div class="col-md-6 bg-primary" style="padding: 0px;">
+            <form class="form-horizontal" style="padding: 40px;">
+                <div class="form-group">
+                    <label for="name"class="col-sm-2 control-label">Fullname:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="name" ng-model="user.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email Id:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" placeholder="email" ng-model="user.email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mobile" class="col-sm-2 control-label">Mobile no:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="mobile" placeholder="mobile no" ng-model="user.mobile">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edu" class="col-sm-2 control-label">Qualification:</label>
+                    <div class="col-sm-10">
+                        <select class="col-sm-12 form-control" ng-model="user.x" id="edu" ng-options="x for x in education"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sex" class="col-sm-2 control-label">Gender:</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio"  id="sex" ng-model="user.sex" value="male">Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio"  id="sex" ng-model="user.sex" value="female"> Female
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">knowladge:</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline" ng-repeat="y in knldg">
+                                <input type="checkbox"  checklist-model="user.y" checklist-value="y">
+                                {{y}}
+                            </label>
+                       <!-- <label class="checkbox-inline">
+                            <input type="checkbox" checklist-model="user.knwlg" value="a">A
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" checklist-model="user.knwlg" value="b">B
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" checklist-model="user.knwlg" value="c">C
+                        </label>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default" ng-if="editg" ng-click="updatme($index);">Update </button>
+                        <button type="submit" class="btn btn-default" ng-if="!editg" ng-click="savme();">Save </button>
+                    </div>
+                </div>
+            </form>
+            <div style="color: black; background-color: #737373; padding: 15px"; >
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Id</th>
+                        <th>Mobile no</th>
+                        <th>Eduction</th>
+                        <th>Gender</th>
+                        <th>Knwldg</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="val in userbook">
+                        <td>{{val.name}}</td>
+                        <td>{{val.email}}</td>
+                        <td>{{val.mobile}}</td>
+                        <td>{{val.x}}</td>
+                        <td>{{val.sex}}</td>
+                        <td>{{val.y}}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="edtme($index);">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteme($index);">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-md-3 bg-warning">.col-md-4</div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mymodal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: blueviolet;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> <span class="glyphicon glyphicon-star-empty"></span> Custom Validation.</h4>
+            </div>
+            <div class="modal-body">
+                <p>Angular provides basic implementation for most common HTML5 input types: (text, number, url, email, date, radio, checkbox),as well as some
+                    directives for validation (required, pattern, minlength, maxlength, min, max).With a custom directive, you can add your own validation
+                    functions to the $validators object on the ngModelController.</p>
+                <p>To get a hold of the controller, you require it in the directive as shown inthe example below.Each function in the $validators object
+                    receives the modelValue and the viewValue as parameters. Angular will then call $setValidity internally with the function's return
+                    value (true: valid, false: invalid).<p>
+                <p>The validation functions are executed every time an input is changed ($setViewValue is called)or whenever the bound model changes.
+                Validation happens after successfully running $parsers and $formatters, respectively.Failed validators are stored by key in ngModelController.$error.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
