@@ -1,7 +1,7 @@
 /**
  * Created by abc on 17/05/2016.
  */
-var app=angular.module("myapp",['checklist-model']);
+var app=angular.module("myapp",['checklist-model','ngMessages']);
 
 app.controller("myctrl", function ($scope) {
     $scope.userbook=[];

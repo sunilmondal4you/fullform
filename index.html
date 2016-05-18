@@ -17,6 +17,7 @@
     <!--angular-->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/checklist-model/checklist-model.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
 
     <script src="index.js"></script>
 </head>
@@ -51,36 +52,142 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 bg-info">some data.</div>
-        <div class="col-md-6 bg-primary" style="padding: 0px;">
-            <form class="form-horizontal" style="padding: 40px;">
+        <div class="col-md-3 bg-info">
+            <div id="carosel">
+                <h2 style="word-spacing: -20px;"><span class="glyphicon glyphicon-star-empty"> Carousel Images:</h2>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                   </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+
+                        <div class="item active">
+                            <img src="images/IMG-20160410-WA0010.jpg" class="col-sm-12">
+                        </div>
+
+                        <div class="item">
+                            <img src="images/IMG-20160410-WA0013.jpg" class="col-sm-12">
+                        </div>
+
+                        <div class="item">
+                            <img src="images/IMG-20160410-WA0024.jpg" class="col-sm-12">
+                        </div>
+                        <div class="item">
+                            <img src="images/IMG-20160410-WA0026.jpg" class="col-sm-12">
+                        </div>
+
+                        <div class="item">
+                            <img src="images/IMG-20160410-WA0031.jpg" class="col-sm-12">
+                        </div>
+
+                        <div class="item">
+                            <img src="images/IMG-20160410-WA0040.jpg" class="col-sm-12">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div id="thumbnail">
+                <h2 style="word-spacing: -20px;"><span class="glyphicon glyphicon-camera"> Thumbnail Images:</h2>
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-sm-6">
+                        <img src="images/IMG-20160410-WA0010.jpg" class="img-thumbnail col-sm-12">
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="images/IMG-20160410-WA0013.jpg" class="img-thumbnail col-sm-12">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-sm-6">
+                        <img src="images/IMG-20160410-WA0024.jpg" class="img-circle col-sm-12">
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="images/IMG-20160410-WA0026.jpg" class="img-circle col-sm-12">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-sm-6">
+                        <img src="images/IMG-20160410-WA0031.jpg" class="img-rounded col-sm-12">
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="images/IMG-20160410-WA0040.jpg" class="img-rounded col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 bg-primary">
+            <h2 style="text-align: center;">Form using Angularjs & Bootstrap.</h2>
+
+            <form class="form-horizontal" name="myform">
                 <div class="form-group">
-                    <label for="name"class="col-sm-2 control-label">Fullname:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" placeholder="name" ng-model="user.name">
+                    <label for="name"class="col-sm-2 control-label" style="text-align: center">Fullname
+                        <span style="color: red; font-size: 20px">*</span>
+                    </label>
+                    <div class="col-sm-10" style="height: 45px">
+                        <input type="text" name="nm" class="form-control" id="name" placeholder="name" ng-model="user.name" required>
+                        <div ng-messages="myform.nm.$error" ng-if="myform.nm.$touched" style="color:maroon" role="alert">
+                            <p ng-message="required">Your name is required.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email Id:</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="email" ng-model="user.email">
+                    <label for="email" class="col-sm-2 control-label" style="text-align: center">Email Id
+                        <span style="color: red; font-size: 20px">*</span>
+                    </label>
+                    <div class="col-sm-10" style="height: 45px">
+                        <input type="email" name="eml" class="form-control" id="email" placeholder="email" ng-model="user.email" required>
+                        <div ng-messages="myform.eml.$error" ng-if="myform.eml.$touched" style="color:maroon" role="alert">
+                            <p ng-message="required">Your name is required.</p>
+                            <p ng-message="email">Plese enter a valid email</p>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="mobile" class="col-sm-2 control-label">Mobile no:</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" id="mobile" placeholder="mobile no" ng-model="user.mobile">
+                    <label for="mobile" class="col-sm-2 control-label" style="text-align: center">Mobile no
+                        <span style="color: red; font-size: 20px">*</span>
+                    </label>
+                    <div class="col-sm-10" style="height: 45px">
+                        <input type="number" name="mbl" class="form-control" id="mobile" placeholder="mobile no" ng-model="user.mobile" ng-minlength="10"
+                               ng-maxlength="13" required>
+                        <div ng-messages="myform.mbl.$error" ng-if="myform.mbl.$touched" style="color:maroon" role="alert">
+                            <p ng-message="required">Your name is required.</p>
+                            <p ng-message="minlength">Your mobile number is too short.</p>
+                            <p ng-message="maxlength">Your mobile number is too long.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="edu" class="col-sm-2 control-label">Qualification:</label>
-                    <div class="col-sm-10">
-                        <select class="col-sm-12 form-control" ng-model="user.x" id="edu" ng-options="x for x in education"></select>
+                    <label for="edu" class="col-sm-2 control-label" style="text-align: center">Education
+                        <span style="color: red; font-size: 20px">*</span>
+                    </label>
+                    <div class="col-sm-10" style="height: 45px">
+                        <select class="col-sm-12 form-control" name="qlf" ng-model="user.x" id="edu" ng-options="x for x in education" required></select>
+                        <div ng-messages="myform.qlf.$error" ng-if="myform.qlf.$touched" style="color:maroon" role="alert">
+                            <p ng-message="required">Select your is Qualificafion.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="sex" class="col-sm-2 control-label">Gender:</label>
-                    <div class="col-sm-10">
+                    <label for="sex" class="col-sm-2 control-label" style="text-align: center">Gender</label>
+                    <div class="col-sm-10" style="height: 45px">
                         <label class="radio-inline">
                             <input type="radio"  id="sex" ng-model="user.sex" value="male">Male
                         </label>
@@ -90,21 +197,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">knowladge:</label>
+                    <label class="col-sm-2 control-label" style="text-align: center">knowladge</label>
                     <div class="col-sm-10">
                         <label class="checkbox-inline" ng-repeat="y in knldg">
-                                <input type="checkbox"  checklist-model="user.y" checklist-value="y">
-                                {{y}}
-                            </label>
-                       <!-- <label class="checkbox-inline">
-                            <input type="checkbox" checklist-model="user.knwlg" value="a">A
+                                <input type="checkbox"  checklist-model="user.y" checklist-value="y">{{y}}
                         </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" checklist-model="user.knwlg" value="b">B
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" checklist-model="user.knwlg" value="c">C
-                        </label>-->
                     </div>
                 </div>
                 <div class="form-group">
