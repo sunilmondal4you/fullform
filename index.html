@@ -263,41 +263,41 @@
             <h3><span class="glyphicon glyphicon-star"></span> Operation on Education.</h3>
             <form class="form-horizontal" name="myform">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Push</label>
-                    <div class="col-sm-6" style="padding-right:0px ">
-                        <input type="text" class="form-control"ng-model="pusheducation">
-                    </div>
                     <div class="col-sm-3 control-label" style="padding-top: 0px; padding-left: 0px">
                         <button type="button" class="btn btn-sm btn-primary" ng-click="nwpush()">Push</button>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Pop</label>
-                    <div class="col-sm-6" style="padding-right:0px ">
-                        <label class="form-control" ng-repeat="x in popeducation">{{x}}</label>
+                    <div class="col-sm-9" style="padding-right:0px ">
+                        <input type="text" class="form-control"ng-model="pusheducation">
                     </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-3 control-label" style="padding-top: 0px; padding-left: 0px">
                         <button type="button" class="btn btn-sm btn-info" ng-click="nwpop()">Pop</button>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Unshift</label>
-                    <div class="col-sm-6" style="padding-right:0px ">
-                        <input type="text" class="form-control"ng-model="unshifteducation">
+                    <div class="col-sm-9" style="padding-right:0px ">
+                        <label class="form-control" ng-repeat="x in popeducation">{{x}}</label>
                     </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-3 control-label" style="padding-top: 0px; padding-left: 0px">
                         <button type="button" class="btn btn-sm btn-primary" ng-click="nwunshift()">Unshift</button>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Shift</label>
-                    <div class="col-sm-6" style="padding-right:0px ">
-                        <label class="form-control" ng-repeat="elmt in shifteducation">{{elmt}}</label>
+                    <div class="col-sm-9" style="padding-right:0px ">
+                        <input type="text" class="form-control"ng-model="unshifteducation">
                     </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-3 control-label" style="padding-top: 0px; padding-left: 0px">
                         <button type="button" class="btn btn-sm btn-info" ng-click="nwshift()">Shift</button>
                     </div>
+                    <div class="col-sm-9" style="padding-right:0px ">
+                        <label class="form-control" ng-repeat="elmt in shifteducation">{{elmt}}</label>
+                    </div>
                 </div>
+
             </form>
             <hr>
             <h3><span class="glyphicon glyphicon-hand-right"></span> Other operations.</h3>
@@ -325,8 +325,6 @@
                 </div>
                 <div class="col-md-3">
                     <button class="btn btn-sm btn-success" ng-click="predicate=''">Unsort</button>
-                    <!--<button class="btn btn-sm btn-danger" ng-click="order('email')">Unsort</button>
-                    <span class="sortorder" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span>-->
                 </div>
             </div>
 
